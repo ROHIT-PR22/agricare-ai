@@ -12,7 +12,7 @@ def create_presentation():
     subtitle = slide.placeholders[1]
     
     title.text = "CAPSTONE PROJECT\nAGRICARE AI: INTELLIGENT CROP DISEASE DETECTION SYSTEM"
-    subtitle.text = "Presented By:\n[Student Name]\n[College Name]\n[Department]\n[AICTE ID]"
+    subtitle.text = "Presented By:\nRohit Prajapati\nJaypee University of Engineering And Technology\nB.Tech-CSE\nSTU67f7493e603021744259390"
 
     # --- Slide 2: Outline ---
     bullet_slide_layout = prs.slide_layouts[1]
@@ -157,21 +157,22 @@ def create_presentation():
     # --- Slide 11: Deployment Link / Github Link ---
     slide = prs.slides.add_slide(bullet_slide_layout)
     title = slide.shapes.title
-    title.text = "DEPLOYMENT LINK / GITHUB LINK"
+    title.text = "Deployment / GitHub Link"
     
     body_shape = slide.shapes.placeholders[1]
     tf = body_shape.text_frame
-    tf.text = "Github Link: [Insert GitHub Repository URL]"
+    tf.text = "GitHub Link: https://github.com/ROHIT-PR22/agricare-ai"
+    
     p = tf.add_paragraph()
-    p.text = "Deployment: Local Flask Server (or replace with live URL if hosted)"
+    p.text = "Deployment: https://agricare-ai-blush.vercel.app/"
 
     # --- Slide 12: Thank You ---
     slide = prs.slides.add_slide(title_slide_layout)
     title = slide.shapes.title
     title.text = "THANK YOU"
     
-    prs.save('AgriCareAI_Capstone_Presentation.pptx')
-    print("Presentation generated successfully: AgriCareAI_Capstone_Presentation.pptx")
+    prs.save('AgriCareAI_Capstone_Presentation_Final.pptx')
+    print("Presentation generated successfully: AgriCareAI_Capstone_Presentation_Final.pptx")
 
 if __name__ == '__main__':
     create_presentation()
