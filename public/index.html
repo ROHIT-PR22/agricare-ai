@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriCare AI - Crop Disease Detection</title>
+    <meta name="description" content="AgriCare AI: Upload a leaf image and instantly detect crop diseases using AI. Get treatment and prevention recommendations.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="background-shape shape-1"></div>
+    <div class="background-shape shape-2"></div>
+    <div class="background-shape shape-3"></div>
+
+    <!-- SDG Badge -->
+    <div class="sdg-badge">
+        <span class="sdg-icon">🌾</span>
+        <span>UN SDG 2: Zero Hunger</span>
+    </div>
+
+    <!-- HOME PAGE -->
+    <div class="container glassmorphism" id="home-page">
+        <header>
+            <div class="logo">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+                <h1>AgriCare AI</h1>
+            </div>
+            <p class="tagline">Intelligent Crop Disease Detection System</p>
+            <p class="sub-tagline">Upload a leaf image • Get instant AI diagnosis • Receive treatment advice</p>
+        </header>
+
+        <main>
+            <div class="upload-area" id="drop-area">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="upload-content" id="upload-content">
+                    <svg class="upload-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <h3>Upload Leaf Image</h3>
+                    <p>Drag & drop or click to browse</p>
+                    <span class="supported-formats">Supports JPG, PNG, WEBP</span>
+                </div>
+                <img id="image-preview" src="#" alt="Image Preview" style="display: none;">
+            </div>
+            <button class="primary-btn" id="predict-btn" disabled>
+                <span id="btn-text">Predict Disease</span>
+                <div class="loader" id="btn-loader"></div>
+            </button>
+        </main>
+
+        <!-- Feature Cards -->
+        <section class="features">
+            <div class="feature-card">
+                <span class="feature-icon">📸</span>
+                <h4>Snap & Upload</h4>
+                <p>Take a photo of any crop leaf</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h4>AI Analysis</h4>
+                <p>CNN model identifies the disease</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💊</span>
+                <h4>Get Treatment</h4>
+                <p>Receive expert recommendations</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- RESULT PAGE -->
+    <div class="container glassmorphism result-container" id="result-page" style="display:none;">
+        <header>
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+                <h2>Diagnosis Result</h2>
+            </div>
+        </header>
+
+        <main class="result-layout">
+            <div class="image-section">
+                <img id="result-image" src="#" alt="Uploaded Leaf" class="result-image">
+            </div>
+
+            <div class="info-section">
+                <div class="result-card disease-card animate-in">
+                    <div class="card-icon">🦠</div>
+                    <h3>Disease Identified</h3>
+                    <p class="disease-name" id="disease-name"></p>
+                </div>
+
+                <div class="result-card confidence-card animate-in delay-1">
+                    <div class="card-icon">📊</div>
+                    <h3>Confidence Score</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <p class="confidence-val" id="confidence-val"></p>
+                </div>
+
+                <div class="result-card treatment-card animate-in delay-2">
+                    <div class="card-icon">💊</div>
+                    <h3>Treatment Recommendation</h3>
+                    <p id="treatment-text"></p>
+                </div>
+
+                <div class="result-card prevention-card animate-in delay-3">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Prevention</h3>
+                    <p id="prevention-text"></p>
+                </div>
+
+                <button class="secondary-btn" id="scan-again-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                    <span>Scan Another Image</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Developer Footer -->
+    <footer class="dev-footer">
+        <h4>Developed by Rohit Prajapati</h4>
+        <p><span class="highlight">Student Name:</span> Rohit Prajapati</p>
+        <p><span class="highlight">College:</span> Jaypee University of Engineering And Technology</p>
+        <p><span class="highlight">Department:</span> B.Tech-CSE</p>
+        <p class="sdg-note">🌱 Supporting UN SDG 2: Zero Hunger</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
